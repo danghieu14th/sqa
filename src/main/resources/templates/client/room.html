@@ -1,0 +1,255 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- Reference Google fonts -->
+<link href="https://fonts.googleapis.com/css?family=Oswald:400,700"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet">
+
+<!-- Reference Bootstrap and local files -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/client/css/slick.css">
+<link rel="stylesheet" href="/client/css/slick-theme.css">
+<link rel="stylesheet" href="/client/css/home.css">
+<link rel="icon" href="/client/images/header/white-logo.png">
+
+<title>Hotel Reservation</title>
+</head>
+
+<body>
+
+	<div class="main-overlay js-main-overlay"></div>
+
+	<!-- Main Cover Section -->
+	<section class="cover-main" id="home">
+		<header>
+			<nav class="nav-wrapper">
+				<div class="logo">
+					<a th:href="@{/}"> <img src="/client/images/header/white-logo.png"
+						class="logo">
+					</a>
+				</div>
+
+				<!-- Menu bar -->
+				<ul class="menu">
+					<li><a th:href="@{/}">Home</a></li>
+					<li><a href="#work">Rooms</a></li>
+					<li><a href="#about">Services</a></li>
+					<li><a href="#slider">Review</a></li>
+					<li><a href="#footer">About Me</a></li>
+				</ul>
+			</nav>
+			<div class="menu-trigger js-menu-trigger"></div>
+		</header>
+
+		<!-- Main buttons and title -->
+		<div class="wrapper">
+			<ul id="scene" data-invert-x="false" data-invert-y="false"
+				data-scalar-x="7" data-scalar-y="7" data-friction-x="0.1"
+				data-friction-y="0.1" data-origin-x="0.5" data-origin-y="0.5">
+				<li class="layer name" data-depth="0.90">HOTEL RESERVATION</li>
+				<li class="layer title" data-depth="0.50">Book Online Now !</li>
+				<li class="layer btn btn-main" data-depth="0.30">
+					<a th:if="${session.username == null}" th:href="@{/login}" class="reservation-btn">New Reservation</a> 
+					<a th:if="${session.username != null}" th:href="@{/new-reservation}" class="reservation-btn">New Reservation</a> 
+					<a th:if="${session.username == null}" th:href="@{/login}" class="reservations-btn">Your Reservations</a> 
+					<a th:if="${session.username != null}" th:href="@{/your-reservations}" class="reservations-btn">Your Reservations</a> <br> 
+					<a th:if="${session.username != null}" th:href="@{/logout}" class="logout-btn">Sign Out</a>
+					<a th:if="${session.username == null}" th:href="@{/login}" class="logout-btn">Log in</a>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<!--Room Cards Section -->
+	<section class="section-padding" id="work">
+		<h2 class="sub-title" th:text="'List of ' + ${categoryDTO.name}"></h2>
+		<div class="container-rooms">
+			<div th:each="roomDTO : ${roomDTOs}" class="row-room">
+			
+			<a th:href="@{/room-category/{id}(id=${categoryDTO.id})}">
+				<div class="col-md-4 col-sm-6">
+					<div class="col-xs-12 fix_p_r">
+						<div class="slide-item card" style="padding: 10px;">
+							<h3 th:text="${roomDTO.roomCode}"></h3>
+							<img th:src="${roomDTO.picture}">
+
+							<p th:text="'Adult Price : ' + ${#numbers.formatDecimal(roomDTO.adultPrice, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></p>
+							<p th:text="'Child Price : ' + ${#numbers.formatDecimal(roomDTO.childPrice, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></p>
+
+						</div>
+
+					</div>
+				</div>
+			</a>
+
+				
+			</div>
+		</div>
+	</section>
+
+	<!-- Services Section -->
+	<section class="services-sec" id="about">
+		<div class="wrapper">
+			<h2 class="sub-title">OUR FACILITIES AND SERVICES</h2>
+
+			<!-- room services and breakfast (up row) -->
+			<section class="tm-service-section">
+				<div class="tm-service">
+					<img class="tm-ser-image" src="/client/images/service/bell.png">
+					<div>
+						<p class="b">Room Service</p>
+						<p>Enjoy your stay with excellent and timely room service</p>
+					</div>
+				</div>
+
+				<div class="tm-service">
+					<img class="tm-ser-image" src="/client/images/service/coffee.png">
+					<div>
+						<p class="b">Free Breakfast</p>
+						<p>Enjoy Free breakfast every morning</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- parking services and spa (down row) -->
+			<section class="tm-service-section">
+
+				<div class="tm-service">
+					<img class="tm-ser-image"
+						src="/client/images/service/car-front.jpg">
+					<div>
+						<p class="b">Free Parking</p>
+						<p>No need to pay any extra charges to park your vehicle</p>
+					</div>
+				</div>
+
+				<div class="tm-service">
+					<img class="tm-ser-image" src="/client/images/service/spa.png">
+					<div>
+						<p class="b">Free Spa</p>
+						<p>Relax at the inhouse Spa once every day of your stay</p>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+
+	<!-- Slider Section -->
+	<div class="slider-div" id="slider">
+		<h2 class="sub-title">Hotel Review</h2>
+		<div class="slider">
+			<!-- slide collection images -->
+			<div class="slide">
+				<img src="/client/images/slide/one.jpg" alt=""
+					class="img-responsive" />
+			</div>
+			<div class="slide">
+				<img src="/client/images/slide/two.jpg" alt=""
+					class="img-responsive" />
+			</div>
+			<div class="slide">
+				<img src="/client/images/slide/three.jpg" alt=""
+					class="img-responsive" />
+			</div>
+			<div class="slide">
+				<img src="/client/images/slide/four.jpg" alt=""
+					class="img-responsive" />
+			</div>
+			<div class="slide">
+				<img src="/client/images/slide/five.jpg" alt=""
+					class="img-responsive" />
+			</div>
+			<div class="slide">
+				<img src="/client/images/slide/six.jpg" alt=""
+					class="img-responsive" />
+			</div>
+			<div class="slide">
+				<img src="/client/images/slide/seven.jpg" alt=""
+					class="img-responsive" />
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer id="footer" class="main-footer">
+
+		<div class="container-body">
+
+			<!-- Footer Column one (information) -->
+			<div class="colum1">
+				<h1>About Me</h1>
+				<p>Pham Trung Dung</p>
+				<img class="me-image" alt="" src="/client/images/footer/me.jpg" />
+
+			</div>
+
+			<!-- Footer Column two (social links) -->
+			<div class="colum2">
+				<h1>Social Links</h1>
+
+				<div class="row">
+					<a href="https://github.com/trungdung123" target="_blank"><img
+						src="/client/images/footer/github.png" /></a>
+					<p>GitHub Account</p>
+				</div>
+
+
+
+				<div class="row">
+					<a href="https://www.facebook.com/phamtrungdungasao"
+						target="_blank"><img src="/client/images/footer/facebook.png" /></a>
+					<p>Facebook Account</p>
+				</div>
+			</div>
+
+			<!-- Footer Column three (contact info) -->
+			<div class="colum3">
+				<h1>Contact</h1>
+
+				<div class="row2">
+					<a target="_blank" href="https://goo.gl/maps/7r8rFhKXP582qr5d9"><img
+						src="/client/images/footer/location.png" /></a>
+					<p>PTIT</p>
+				</div>
+
+
+			</div>
+		</div>
+
+		<!-- Container Footer -->
+		<div class="container-footer">
+			<div class="footer">
+
+
+				<div class="information">
+					<a>Hotel Reservation</a> | <a>Programming Language Project</a> | <a>Pham Trung Dung</a>
+				</div>
+			</div>
+
+		</div>
+
+	</footer>
+
+	<!-- Reference Javascript and local files -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
+
+	<script src="/client/scripts/parallax.min.js"></script>
+	<script src="/client/scripts/slick.min.js"></script>
+	<script src="/client/scripts/home.js"></script>
+
+</body>
+
+</html>
