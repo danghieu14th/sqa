@@ -71,5 +71,15 @@
          
 # 3. Người thực hiện :
 * Phạm Trung Dũng - B19DCCN130
+
+   * Hoàn thành module Quản lý phiếu đặt phòng 
+   * Hoàn thành module khách hàng
+   * Phân quyền người dùng và xử lý các thao tác xác thực login, logout 
 * Nguyễn Thị Lan - B19DCCN366
+
+   * Thiết kế giao điện khách hàng và quản lý 
+   * Hoàn thành module Quản lý loại phòng và tài khoản hệ thống
 * Nguyễn Thị Linh - B19DCCN377
+
+   * Tìm hiểu hệ thống và thiết cơ sở dữ liệu 
+   * Hoàn thành module Quản lý phòng khách sạn 
