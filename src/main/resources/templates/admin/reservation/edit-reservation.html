@@ -141,8 +141,9 @@
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>List</p>
 								</a></li>
-								<li class="nav-item"><a th:href="@{/admin/rooms/add-room}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									th:href="@{/admin/rooms/add-room}" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
 										<p>Add</p>
 								</a></li>
 							</ul></li>
@@ -158,14 +159,13 @@
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>List</p>
 								</a></li>
-								<li class="nav-item"><a
-									th:href="@{/admin/reservations/add-reservation}"
+								<li class="nav-item"><a th:href="@{/admin/reservations/add-reservation}"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>Add</p>
 								</a></li>
 							</ul></li>
 
-
+						
 
 					</ul>
 				</nav>
@@ -181,13 +181,13 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1 class="m-0">Edit reservation</h1>
+							<h1 class="m-0">Dashboard</h1>
 						</div>
 						<!-- /.col -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item"><a th:href="@{/admin}">Home</a></li>
-								<li class="breadcrumb-item active">Edit reservation</li>
+								<li class="breadcrumb-item active">Dashboard</li>
 							</ol>
 						</div>
 						<!-- /.col -->
@@ -196,32 +196,28 @@
 				</div>
 				<!-- /.container-fluid -->
 			</div>
-
 			<section class="content">
-
 				<div class="card card-success">
 					<div class="card-header">
 						<h3 class="card-title">Reservation information</h3>
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
-					<form
-						th:action="@{/admin/reservations/edit-reservation/{id}(id=${reservationDTO.id})}"
-						method="post" th:object="${reservationDTO}">
+					<form th:action="@{/admin/reservations/edit-reservation/{id}(id=${reservationDTO.id})}" method="post"
+						th:object="${reservationDTO}">
 						<div class="card-body">
+							
 							<div class="form-group">
 								<label>User's</label> <select th:field="*{userDTO.username}"
 									class="form-control">
-									<option th:each="userDTO : ${userDTOs}"
-										th:value="${userDTO.username}" th:text="${userDTO.username}"></option>
+									<option th:each="userDTO : ${userDTOs}" th:value="${userDTO.username}" th:text="${userDTO.username}"></option>
 								</select>
 							</div>
-
+							
 							<div class="form-group">
 								<label>Room</label> <select th:field="*{roomDTO.roomCode}"
 									class="form-control">
-									<option th:each="roomDTO : ${roomDTOs}"
-										th:value="${roomDTO.roomCode}" th:text="${roomDTO.roomCode}"></option>
+									<option th:each="roomDTO : ${roomDTOs}" th:value="${roomDTO.roomCode}" th:text="${roomDTO.roomCode}"></option>
 								</select>
 							</div>
 
@@ -236,13 +232,13 @@
 									type="number" min="0" class="form-control" name="childNumber"
 									th:field="*{childNumber}" placeholder="Enter Child number">
 							</div>
-
+							
 							<div class="form-group">
 								<label for="exampleInputEmail1">Period of day</label> <input
 									type="number" min="1" class="form-control" name="periodOfDay"
 									th:field="*{periodOfStay}" placeholder="Enter Period of day">
 							</div>
-
+							
 							<div class="form-group">
 								<label for="exampleInputEmail1">Arrival Date</label> <input
 									type="date" class="form-control" name="arrivalDate"
@@ -257,9 +253,7 @@
 						</div>
 					</form>
 				</div>
-
 			</section>
-
 		</div>
 		<!-- /.content-wrapper -->
 		<footer class="main-footer">

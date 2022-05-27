@@ -2,6 +2,7 @@ package com.example.hotelmanagerment.controller.admin;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -69,6 +70,40 @@ public class AdminReservationController {
 		reservationDTO.setRoomDTO(roomService.getRoomByRoomCode(reservationDTO.getRoomDTO()
 				.getRoomCode()).toDTO());
 		reservationService.createReservation(reservationDTO.toEntity());
+		
+		return "redirect:/admin/reservations";
+	}
+	
+	@GetMapping("/edit-reservation/{id}")
+	public String editReservationGet (Model model, 
+			@PathVariable("id") Long id) {
+		
+		List<UserDTO> userDTOs = userService.getAllUser().stream()
+				.map(e -> e.toDTO()).collect(Collectors.toList());
+		
+		List<RoomDTO> roomDTOs = roomService.getAllRoom().stream()
+				.map(e -> e.toDTO()).collect(Collectors.toList()).stream()
+				.filter(e -> e.getState() == 0).collect(Collectors.toList());
+		
+		ReservationDTO reservationDTO = reservationService.getReservationById(id).toDTO();
+		
+		model.addAttribute("userDTOs", userDTOs);
+		model.addAttribute("roomDTOs", roomDTOs);
+		model.addAttribute("reservationDTO", reservationDTO);
+		
+		return "/admin/reservation/edit-reservation";
+	}
+	
+	@PostMapping("/edit-reservation/{id}")
+	public String editReservationPost (Model model, 
+			@PathVariable("id") Long id, 
+			@ModelAttribute("reservationDTO") ReservationDTO reservationDTO) {
+		
+		reservationDTO.setUserDTO(userService.getUserByUsername(reservationDTO.getUserDTO()
+				.getUsername()).toDTO());
+		reservationDTO.setRoomDTO(roomService.getRoomByRoomCode(reservationDTO.getRoomDTO()
+				.getRoomCode()).toDTO());
+		reservationService.editReservation(reservationDTO.toEntity(), id);
 		
 		return "redirect:/admin/reservations";
 	}
