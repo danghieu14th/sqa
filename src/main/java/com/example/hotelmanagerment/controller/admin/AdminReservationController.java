@@ -41,7 +41,7 @@ public class AdminReservationController {
 		
 		model.addAttribute("reservationDTOs", reservationDTOs);
 		
-		return "/admin/reservation/reservations";
+		return "admin/reservation/reservations";
 	}
 	
 	@GetMapping("/add-reservation")
@@ -58,7 +58,7 @@ public class AdminReservationController {
 		model.addAttribute("roomDTOs", roomDTOs);
 		model.addAttribute("reservationDTO", new ReservationDTO());
 		
-		return "/admin/reservation/add-reservation";
+		return "admin/reservation/add-reservation";
 	}
 	
 	@PostMapping("/add-reservation")
@@ -91,7 +91,7 @@ public class AdminReservationController {
 		model.addAttribute("roomDTOs", roomDTOs);
 		model.addAttribute("reservationDTO", reservationDTO);
 		
-		return "/admin/reservation/edit-reservation";
+		return "admin/reservation/edit-reservation";
 	}
 	
 	@PostMapping("/edit-reservation/{id}")

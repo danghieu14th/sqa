@@ -48,7 +48,7 @@ public class AdminRoomController {
 		model.addAttribute("roomDTO", new RoomDTO());
 		model.addAttribute("categoryDTOs", categoryDTOs);
 		
-		return "/admin/room/add-room";
+		return "admin/room/add-room";
 	}
 	
 	@PostMapping("/add-room")
@@ -70,7 +70,7 @@ public class AdminRoomController {
 		model.addAttribute("roomDTO", roomService.getRoomById(id).toDTO());
 		model.addAttribute("categoryDTOs", categoryDTOs);
 		
-		return "/admin/room/edit-room";
+		return "admin/room/edit-room";
 	}
 	
 	@PostMapping("/edit-room/{id}")

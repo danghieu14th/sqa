@@ -30,13 +30,13 @@ public class AdminCategoryController {
 				.map(e -> e.toDTO()).collect(Collectors.toList());
 		
 		model.addAttribute("categoryDTOs", categoryDTOs);
-		return "/admin/category/categories";
+		return "admin/category/categories";
 	}
 	
 	@GetMapping("/add-category")
 	public String addNewCategoryGet (Model model) {
 		model.addAttribute("categoryDTO", new CategoryDTO());
-		return "/admin/category/add-category";
+		return "admin/category/add-category";
 	}
 	
 	@PostMapping("/add-category")
@@ -54,7 +54,7 @@ public class AdminCategoryController {
 		
 		CategoryDTO categoryDTO = categoryService.getCategoryById(id).toDTO();
 		model.addAttribute("categoryDTO", categoryDTO);
-		return "/admin/category/edit-category";
+		return "admin/category/edit-category";
 	}
 	
 	@PostMapping("/edit-category/{id}")
