@@ -1,0 +1,20 @@
+datasource:
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  username: ${MYSQLUSER}
+  password: ${MYSQLPASSWORD}
+  url: jdbc:mysql://${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}
+
+spring:
+  jpa:
+    #    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: false
+
+# Server Error Path
+server:
+  error:
+    path: /error
