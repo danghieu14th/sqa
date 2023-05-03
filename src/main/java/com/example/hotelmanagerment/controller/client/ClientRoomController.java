@@ -38,7 +38,7 @@ public class ClientRoomController {
 		model.addAttribute("roomDTOs", roomDTOs);
 		model.addAttribute("categoryDTO", category.toDTO());
 		
-		return "/client/room.html";
+		return "client/room.html";
 	}
 	
 	

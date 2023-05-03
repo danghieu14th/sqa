@@ -42,7 +42,7 @@ public class HomeClientController {
 		
 		model.addAttribute("categoryDTOs", categoryDTOs);
 		
-		return "/client/home-page";	
+		return "client/home-page";
 	}
 	
 	@GetMapping("/login")
@@ -52,7 +52,7 @@ public class HomeClientController {
 
 		model.addAttribute("userDTO", userDTO);
 
-		return "/client/login.html";
+		return "client/login";
 	}
 	
 	@PostMapping("/login")
@@ -63,7 +63,7 @@ public class HomeClientController {
 
 		if (user == null){
 			model.addAttribute("error", "Username or password is invalid");
-			return "/client/login";
+			return "client/login";
 		}
 
 		if (user.getRole().getName().equals(ERole.ROLE_USER) && new BCryptPasswordEncoder().matches(userDTO.getPassword(), user.getPassword())){
@@ -72,7 +72,7 @@ public class HomeClientController {
 		}
 
 		model.addAttribute("error", "Username or password is invalid");
-		return "/client/login";
+		return "client/login";
 
 	}
 
@@ -83,7 +83,7 @@ public class HomeClientController {
 
 		model.addAttribute("userDTO", userDTO);
 
-		return "/client/register";
+		return "client/register";
 	}
 
 	@PostMapping("/register")

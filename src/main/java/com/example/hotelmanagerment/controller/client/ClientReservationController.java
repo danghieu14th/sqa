@@ -48,7 +48,7 @@ public class ClientReservationController {
 		model.addAttribute("roomDTOs", roomDTOs);
 		model.addAttribute("reservationDTO", reservationDTO);
 		
-		return "/client/reservation-page.html";
+		return "client/reservation-page";
 	}
 	
 	@PostMapping("/new-reservation")
@@ -76,7 +76,7 @@ public class ClientReservationController {
 		
 		model.addAttribute("reservationDTOs", reservationDTOs);
 		
-		return "/client/your-reservations.html";
+		return "client/your-reservations";
 	}
 	
 	@GetMapping("/delete-reservation/{id}")
