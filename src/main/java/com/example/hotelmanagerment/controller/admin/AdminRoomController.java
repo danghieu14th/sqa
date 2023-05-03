@@ -36,7 +36,7 @@ public class AdminRoomController {
 				.map(e -> e.toDTO()).collect(Collectors.toList());
 		
 		model.addAttribute("roomDTOs", roomDTOs);
-		return "/admin/room/rooms";
+		return "admin/room/rooms";
 	}
 	
 	@GetMapping("/add-room")
