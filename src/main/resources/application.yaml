@@ -1,9 +1,3 @@
-datasource:
-  driver-class-name: com.mysql.cj.jdbc.Driver
-  username: ${MYSQLUSER}
-  password: ${MYSQLPASSWORD}
-  url: jdbc:mysql://${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}
-
 spring:
   jpa:
     #    show-sql: true
@@ -13,6 +7,18 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: false
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: '1KB'
+      max-file-size: '10MB'
+      max-request-size: '10MB'
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${MYSQLUSER}
+    password: ${MYSQLPASSWORD}
+    url: jdbc:mysql://${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}
 
 # Server Error Path
 server:
