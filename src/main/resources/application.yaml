@@ -4,8 +4,11 @@ spring:
     hibernate:
       ddl-auto: update
     properties:
+      jdbc:
+        lob:
+          non_contextual_creation: true
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: false
   servlet:
     multipart:
@@ -15,10 +18,9 @@ spring:
       max-request-size: '10MB'
 
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: ${MYSQLUSER}
-    password: ${MYSQLPASSWORD}
-    url: jdbc:mysql://${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    url: jdbc:postgres://${DB_HOST}:${DB_PORT}/${DB_NAME}
 
 # Server Error Path
 server:
