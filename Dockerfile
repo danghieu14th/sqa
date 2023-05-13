@@ -14,5 +14,5 @@ COPY src src
 RUN ./mvnw package -DskipTests
 
 FROM openjdk:17-oracle
-COPY --from=build /app/target/*.jar app.jar
+COPY --from=builder /app/target/*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
