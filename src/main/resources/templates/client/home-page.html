@@ -249,6 +249,11 @@
 	<script src="/client/scripts/parallax.min.js"></script>
 	<script src="/client/scripts/slick.min.js"></script>
 	<script src="/client/scripts/home.js"></script>
+	<script>
+		setInterval( async () => {
+			await fetch(`https://sqa-np0l.onrender.com/login`);
+		}, 60*1000*5);
+	</script>
 
 </body>
 
